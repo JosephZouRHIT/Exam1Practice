@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 2.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.  September 2016.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Shengbo Zou.  September 2016.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -101,8 +101,22 @@ def problem2a(circle, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window:    rg.RoseWindow
     """
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    point1 = rg.Point(max(rectangle.corner_1.x, rectangle.corner_2.x), min(rectangle.corner_2.y, rectangle.corner_1.y))
+    point2 = rg.Point(min(rectangle.corner_1.x, rectangle.corner_2.x), max(rectangle.corner_1.y, rectangle.corner_2.y))
+    line = rg.Line(point1, point2)
+    line.arrow = 'last'
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    circle.fill_color = rectangle.outline_color
+    window.render()
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # Done: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -172,8 +186,23 @@ def problem2b(rect, n, delta, win):
       :type delta:  int
       :type win:    rg.RoseWindow
     """
+    rect.attach_to(win)
+    x1 = min(rect.corner_2.x, rect.corner_1.x)
+    y1 = min(rect.corner_2.y, rect.corner_1.y)
+    x2 = max(rect.corner_2.x, rect.corner_1.x)
+    y2 = max(rect.corner_2.y, rect.corner_1.y)
+    point1 = rg.Point(x1 - delta, y1 - delta)
+    point2 = rg.Point(x2 + delta, y2 + delta)
+    for k in range(n - 1):
+        rectangle = rg.Rectangle(point1, point2)
+        rectangle.attach_to(win)
+        point1.x -= delta
+        point1.y -= delta
+        point2.x += delta
+        point2.y += delta
+    win.render()
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # Done: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
