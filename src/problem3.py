@@ -232,8 +232,7 @@ def problem3b(m, point1):
     window = rg.RoseWindow(400, 650)
     answer = 0
     for k in range(m):
-        subanswer = problem3a(window, point1, 3 + 2 * k)
-        answer += subanswer
+        answer += problem3a(window, point1, 3 + 2 * k)
         point1.x -= 20 * (2 + 2 * k)
         point1.y -= 10 * (2 + 2 * k)
         point1.y += 60
